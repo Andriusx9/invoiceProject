@@ -1,0 +1,142 @@
+[
+  {
+    "category": "RF Shielding",
+    "name": "Marsala - Sperone, Fine, D.o.c.",
+    "quantity": 15,
+    "unitPrice": 47.1,
+    "weight": 1.4
+  },
+  {
+    "category": "Ornamental Railings",
+    "name": "Wine - Delicato Merlot",
+    "quantity": 15,
+    "unitPrice": 12.1,
+    "weight": 4.9
+  },
+  {
+    "category": "Structural and Misc Steel (Fabrication)",
+    "name": "Lettuce - Escarole",
+    "quantity": 18,
+    "unitPrice": 5.7,
+    "weight": 3.6
+  },
+  {
+    "category": "Wall Protection",
+    "name": "Pastry - Banana Tea Loaf",
+    "quantity": 18,
+    "unitPrice": 35.4,
+    "weight": 1.9
+  },
+  {
+    "category": "Painting & Vinyl Wall Covering",
+    "name": "Squid - U 5",
+    "quantity": 5,
+    "unitPrice": 12.7,
+    "weight": 2.2
+  },
+  {
+    "category": "Sitework & Site Utilities",
+    "name": "Oregano - Fresh",
+    "quantity": 4,
+    "unitPrice": 43.9,
+    "weight": 4.1
+  },
+  {
+    "category": "Electrical and Fire Alarm",
+    "name": "Stock - Fish",
+    "quantity": 22,
+    "unitPrice": 2.7,
+    "weight": 3.0
+  },
+  {
+    "category": "Curb & Gutter",
+    "name": "Tumeric",
+    "quantity": 4,
+    "unitPrice": 16.3,
+    "weight": 4.1
+  },
+  {
+    "category": "Landscaping & Irrigation",
+    "name": "Carbonated Water - Cherry",
+    "quantity": 15,
+    "unitPrice": 18.4,
+    "weight": 1.6
+  },
+  {
+    "category": "Fire Protection",
+    "name": "Juice - Pineapple, 341 Ml",
+    "quantity": 1,
+    "unitPrice": 21.8,
+    "weight": 3.1
+  },
+  {
+    "category": "Construction Clean and Final Clean",
+    "name": "Shrimp - Black Tiger 8 - 12",
+    "quantity": 5,
+    "unitPrice": 49.7,
+    "weight": 1.1
+  },
+  {
+    "category": "EIFS",
+    "name": "Salmon - Atlantic, Skin On",
+    "quantity": 18,
+    "unitPrice": 42.1,
+    "weight": 3.3
+  },
+  {
+    "category": "Plumbing & Medical Gas",
+    "name": "Mcguinness - Blue Curacao",
+    "quantity": 24,
+    "unitPrice": 30.2,
+    "weight": 3.1
+  },
+  {
+    "category": "Temp Fencing, Decorative Fencing and Gates",
+    "name": "Beer - Alexander Kieths, Pale Ale",
+    "quantity": 9,
+    "unitPrice": 39.1,
+    "weight": 3.8
+  },
+  {
+    "category": "Structural & Misc Steel Erection",
+    "name": "Chocolate - Milk Coating",
+    "quantity": 24,
+    "unitPrice": 17.9,
+    "weight": 3.5
+  },
+  {
+    "category": "Masonry",
+    "name": "Ice Cream Bar - Drumstick",
+    "quantity": 11,
+    "unitPrice": 3.6,
+    "weight": 3.6
+  },
+  {
+    "category": "Fire Sprinkler System",
+    "name": "Clams - Bay",
+    "quantity": 22,
+    "unitPrice": 37.3,
+    "weight": 2.4
+  },
+  {
+    "category": "Plumbing & Medical Gas",
+    "name": "Oil - Margarine",
+    "quantity": 25,
+    "unitPrice": 30.6,
+    "weight": 1.4
+  },
+  {
+    "category": "Sitework & Site Utilities",
+    "name": "Mix - Cocktail Strawberry Daiquiri",
+    "quantity": 20,
+    "unitPrice": 17.6,
+    "weight": 1.5
+  },
+  {
+    "category": "Elevator",
+    "name": "Olives - Morracan Dired",
+    "quantity": 15,
+    "unitPrice": 25.8,
+    "weight": 4.4
+  }
+]
