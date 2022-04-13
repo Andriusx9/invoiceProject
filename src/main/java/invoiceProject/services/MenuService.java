@@ -145,7 +145,7 @@ public class MenuService {
             System.out.println("Id: " + allCustomer.getCustomerId() + ". " + allCustomer.getFullName());
         }
 
-        int chosenCustomer = scanner.nextInt();
+        int chosenCustomerId = scanner.nextInt();
 
         System.out.println("Choose products: ");
 
@@ -180,8 +180,10 @@ public class MenuService {
             orderAmount += orderProduct.getUnitPrice() * orderProduct.getQuantity();
         }
 
+        Customer chosenCustomer = allCustomers.get((chosenCustomerId - 1));
+
         Orders order = Orders.builder()
-                .customer(allCustomers.get((chosenCustomer - 1)))
+                .customer(chosenCustomer)
                 .orderDate(LocalDate.now())
                 .amount(orderAmount)
                 .products(orderProducts)
@@ -192,17 +194,14 @@ public class MenuService {
             ProductRepository.findById(chosenProductsList.get(i)).setOrders(List.of(order));
         }
 
-        allCustomers.get((chosenCustomer - 1)).setOrders(List.of(order));
-
-
+        chosenCustomer.setOrders(List.of(order));
 
         session.beginTransaction();
-        session.save(allCustomers.get((chosenCustomer - 1)));
+        session.save(chosenCustomer);
         session.getTransaction().commit();
 
         session.close();
         CreatePDF.createPDF(order.getOrderId());
-
 
     }
 }
