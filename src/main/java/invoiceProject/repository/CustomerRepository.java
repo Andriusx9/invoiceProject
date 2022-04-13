@@ -25,12 +25,6 @@ public class CustomerRepository {
         System.out.println("Customer was saved: " + customer);
     }
 
-    /**
-     * TODO
-     * 1.findAll()
-     * 2.findByName()
-     * 3. update()
-     */
     public static List<Customer> findAll() {
        List<Customer> customers = session.createQuery("from Customer", Customer.class).list();
        return customers;

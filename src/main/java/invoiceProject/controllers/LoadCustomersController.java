@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class LoadCustomersController {
 
-    private static final String INSERT_CUSTOMERS = "INSERT INTO customer (address, country, email, fullName, phoneNumber) VALUES (?,?,?,?,?);";
+    private static final String INSERT_CUSTOMERS = "INSERT INTO customer (address, country, email, fullName, phoneNumber, personalCode) VALUES (?,?,?,?,?,?);";
 
     public static void loadCustomersFromJSON() throws SQLException, IOException {
         PreparedStatement preparedStatement = DatabaseUtils.databaseConnection.prepareStatement(INSERT_CUSTOMERS);
@@ -29,6 +29,7 @@ public class LoadCustomersController {
             preparedStatement.setString(3, object.getString("email"));
             preparedStatement.setString(4, object.getString("fullName"));
             preparedStatement.setString(5, object.getString("phoneNumber"));
+            preparedStatement.setLong(6, object.getLong("personalCode"));
 
             preparedStatement.executeUpdate();
         }

@@ -88,7 +88,10 @@ public class MenuService {
         System.out.println("Customer country: ");
         String country = scanner.nextLine();
 
-        System.out.println(fullName + address + phoneNumber + email + country);
+        System.out.println("Customer personal code: ");
+        Long personalCode = scanner.nextLong();
+
+        System.out.println(fullName + address + phoneNumber + email + country + personalCode);
 
         Customer customer = new Customer();
 
@@ -97,6 +100,7 @@ public class MenuService {
         customer.setPhoneNumber(phoneNumber);
         customer.setEmail(email);
         customer.setCountry(country);
+        customer.setPersonalCode(personalCode);
 
         CustomerRepository.persist(customer);
 
@@ -137,8 +141,8 @@ public class MenuService {
 
         List<Customer> allCustomers = CustomerRepository.findAll();
 
-        for (int i = 0; i < allCustomers.size(); i++) {
-            System.out.println("Id: " + allCustomers.get(i).getCustomerId() + ". " + allCustomers.get(i).getFullName());
+        for (Customer allCustomer : allCustomers) {
+            System.out.println("Id: " + allCustomer.getCustomerId() + ". " + allCustomer.getFullName());
         }
 
         int chosenCustomer = scanner.nextInt();
@@ -147,9 +151,9 @@ public class MenuService {
 
         List<Product> allProducts = ProductRepository.findAll();
 
-        for (int i = 0; i < allProducts.size(); i++) {
-            System.out.println("Id: " + allProducts.get(i).getProductId() + ". " + allProducts.get(i).getName() + "; Price: " +
-                    allProducts.get(i).getUnitPrice());
+        for (Product allProduct : allProducts) {
+            System.out.println("Id: " + allProduct.getProductId() + ". " + allProduct.getName() + "; Price: " +
+                    allProduct.getUnitPrice());
         }
 
         int chosenProduct;
@@ -166,11 +170,11 @@ public class MenuService {
         } while (chosenProduct != 0);
 
         List<Product> orderProducts = new ArrayList<>();
-        for (int i = 0; i < chosenProductsList.size(); i++) {
-            orderProducts.add(ProductRepository.findById(chosenProductsList.get(i)));
+        for (Integer integer : chosenProductsList) {
+            orderProducts.add(ProductRepository.findById(integer));
         }
 
-        Double orderAmount = 0.00;
+        double orderAmount = 0.00;
 
         for (Product orderProduct : orderProducts) {
             orderAmount += orderProduct.getUnitPrice() * orderProduct.getQuantity();
@@ -178,7 +182,7 @@ public class MenuService {
 
         Orders order = Orders.builder()
                 .customer(allCustomers.get((chosenCustomer - 1)))
-                .orderDate(LocalDate.of(2022, 03, 12))
+                .orderDate(LocalDate.now())
                 .amount(orderAmount)
                 .products(orderProducts)
                 .build();
@@ -190,9 +194,15 @@ public class MenuService {
 
         allCustomers.get((chosenCustomer - 1)).setOrders(List.of(order));
 
+
+
         session.beginTransaction();
         session.save(allCustomers.get((chosenCustomer - 1)));
         session.getTransaction().commit();
+
+        session.close();
+        CreatePDF.createPDF(order.getOrderId());
+
 
     }
 }

@@ -23,6 +23,7 @@ public class Customer {
     private String phoneNumber;
     private String email;
     private String country;
+    private Long personalCode;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer") //cascade = CascadeType.ALL,
     private List<Orders> orders;

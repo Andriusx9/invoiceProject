@@ -23,7 +23,7 @@ public class OrderRepository {
         return orders;
     }
 
-    public Orders findById(Integer orderId) {
+    public static Orders findById(Integer orderId) {
         return session.find(Orders.class, orderId);
     }
 
