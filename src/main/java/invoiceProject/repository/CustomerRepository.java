@@ -1,6 +1,5 @@
 package invoiceProject.repository;
 
-import com.sun.xml.bind.v2.TODO;
 import invoiceProject.HibernateUtil;
 import invoiceProject.model.Customer;
 import org.hibernate.Session;

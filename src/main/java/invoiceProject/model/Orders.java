@@ -22,13 +22,13 @@ public class Orders {
     private Double amount;
     private LocalDate orderDate;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "Order_products",
+            name = "orders_products",
             joinColumns = { @JoinColumn(name = "orderId") },
             inverseJoinColumns = { @JoinColumn(name = "productId") }
     )

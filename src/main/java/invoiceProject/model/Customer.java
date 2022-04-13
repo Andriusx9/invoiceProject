@@ -15,8 +15,8 @@ import java.util.List;
 @Builder
 public class Customer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // meaning auto-incremented
     private Integer customerId;
     private String fullName;
     private String address;
@@ -24,6 +24,6 @@ public class Customer {
     private String email;
     private String country;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer") //cascade = CascadeType.ALL,
     private List<Orders> orders;
 }

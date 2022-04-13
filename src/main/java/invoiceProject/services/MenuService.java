@@ -148,7 +148,8 @@ public class MenuService {
         List<Product> allProducts = ProductRepository.findAll();
 
         for (int i = 0; i < allProducts.size(); i++) {
-            System.out.println("Id: " + allProducts.get(i).getProductId() + ". " + allProducts.get(i).getName());
+            System.out.println("Id: " + allProducts.get(i).getProductId() + ". " + allProducts.get(i).getName() + "; Price: " +
+                    allProducts.get(i).getUnitPrice());
         }
 
         int chosenProduct;
