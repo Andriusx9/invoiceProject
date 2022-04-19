@@ -205,4 +205,62 @@ public class CreatePDF {
         document.close();
         System.out.println("Pdf was created");
     }
+
+    public static String amountInWords(Integer number) {
+
+        if( number < 0 & String.valueOf(number).length() > 9){
+            return "Number to big, only to billion";
+        }
+
+        if(number == 0) { return "nulis"; }
+
+        String[] units = {"", "vienas", "du", "trys", "keturi", "penki", "šeši", "septyni",
+                "aštuoni", "devyni"};
+
+        String[] niolikai = { "", "vienuolika", "dvylika", "trylika", "keturiolika",
+                "penkiolika", "šešiolika", "septyniolika", "aštuoniolika", "devyniolika"};
+
+        String[] tens = {"", "dešimt", "dvidešimt", "trisdešimt", "keturiasdešimt", "penkiasdešimt",
+                "šešiasdešimt", "septyniasdešimt", "aštuoniasdešimt", "devyniasdešimt" };
+
+        String[][] name = {{"milijonas", "milijonai", "milijonu"},{"tukstantis", "tukstanciai", "tukstanciu"}};
+
+        String stringNumber = String.format("%09d", number);
+
+        String[] skaicius = stringNumber.split("(?<=\\G...)");
+
+        String zodziais;
+
+        System.out.println(skaicius[1].substring(1));
+
+        for (int i = 0; i < skaicius.length; i++) {
+           // System.out.println("1.*" + skaicius[i] + "*");
+            System.out.println(skaicius[i].charAt(0));
+            int linksnis = 0;
+
+            int firstNumberAtTrio = Character.getNumericValue(skaicius[i].charAt(0));
+            // pridedam simtu pavadinima, jei pirmas tripleto skaitmuo > 0
+            if(firstNumberAtTrio > 0 ){
+                zodziais = units[firstNumberAtTrio];
+                if(firstNumberAtTrio > 1) {
+                    zodziais += "šimtai";
+                } else {
+                    zodziais += "šimtas";
+                }
+            }
+
+            // du paskutiniai tripleto skaiciai
+            int du = Integer.parseInt(skaicius[i].substring(1));
+            // pacekinam nioliktus skaicius
+
+            if(du > 10 && du < 20) {
+
+            }
+
+        }
+
+
+        return stringNumber;
+
+    }
 }

@@ -190,8 +190,8 @@ public class MenuService {
                 .build();
 
 
-        for (int i = 0; i < chosenProductsList.size(); i++) {
-            ProductRepository.findById(chosenProductsList.get(i)).setOrders(List.of(order));
+        for (Integer newChosenProduct : chosenProductsList) {
+            ProductRepository.findById(newChosenProduct).setOrders(List.of(order));
         }
 
         chosenCustomer.setOrders(List.of(order));
