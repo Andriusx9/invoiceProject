@@ -14,8 +14,7 @@ public class Main {
 
         //System.out.println( CreatePDF.amountInWords(123056789));
 
-        System.out.println(NumbersToWords.numbersToWords(500040013));
-        System.out.println(NumbersToWords.numbersToWords(100478017));
+        System.out.println(NumbersToWords.numbersToWords(20.03));
 
     }
 }

@@ -1,6 +1,8 @@
 package invoiceProject.services;
 
 
+import java.util.Currency;
+
 public class NumbersToWords {
 
     private static final String[] units = {"", "vienas", "du", "trys", "keturi", "penki",
@@ -17,13 +19,28 @@ public class NumbersToWords {
             {"tūkstantis", "tūkstančiai", "tūkstančių"}
     };
 
+    public static String numbersToWords(Double number){
 
+        System.out.println(String.format("%.2f", number));
+
+        String[] split = String.valueOf(number).split("\\.");
+
+        String numberToWordsBeforePoint = numbersToWords(Integer.parseInt(split[0]));
+
+        String cents = String.valueOf(split[1]);
+
+        System.out.println("lenght: "+ cents.length());
+        if( cents.length() == 1){
+            cents = cents.concat("0");
+        }
+        return numberToWordsBeforePoint.concat(" ").concat(cents);
+    }
 
 
     /**
      *  The number that will be translated into words
      * @param number  MIN = 1, MAX = 999 999 999
-     * @return method return number translated to words
+     * @return method return number translated into words
      */
     public static String numbersToWords(int number) {
         if (number == 0 || number < 0) {
