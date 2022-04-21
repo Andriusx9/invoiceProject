@@ -7,6 +7,7 @@ import invoiceProject.model.Customer;
 import invoiceProject.model.Orders;
 import invoiceProject.model.Product;
 import invoiceProject.repository.CustomerRepository;
+import invoiceProject.repository.OrderRepository;
 import invoiceProject.repository.ProductRepository;
 import org.hibernate.Session;
 
@@ -45,6 +46,9 @@ public class MenuService {
         System.out.println("3. Create Order");
         System.out.println("4. Load Customers from JSON");
         System.out.println("5. Load Products from JSON");
+        System.out.println("6. Update customer full name");
+        System.out.println("7. Delete customer");
+        System.out.println("8. Delete order");
         System.out.println("0. Exit/Stop program");
     }
 
@@ -67,7 +71,62 @@ public class MenuService {
             } catch (SQLException | IOException exception) {
                 exception.printStackTrace();
             }
+        } else if(userSelectedOption == 6) {
+            updateCustomerFullName();
+        } else if(userSelectedOption == 7) {
+            deleteCustomer();
+        } else if(userSelectedOption == 8) {
+            deleteOrder();
         }
+    }
+
+    public static void deleteOrder() {
+        Scanner scanner = new Scanner(System.in);
+        List<Orders> allOrders = OrderRepository.findAll();
+        System.out.println("Choose order: ");
+
+        for (Orders order : allOrders) {
+            System.out.println(order.getOrderId() + ". " + order.getCustomer().getFullName() + " " + order.getOrderDate());
+        }
+
+        int chosenId = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Choose order to delete: ");
+
+        OrderRepository.deleteById(chosenId);
+    }
+
+    public static void deleteCustomer(){
+        Scanner scanner = new Scanner(System.in);
+        List<Customer> allCustomers = CustomerRepository.findAll();
+        System.out.println("Choose customer: ");
+        for (Customer customer : allCustomers) {
+            System.out.println(customer.getCustomerId() + ". " + customer.getFullName());
+        }
+        int chosenId = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Choose customer to delete: ");
+
+        CustomerRepository.deleteById(chosenId);
+    }
+
+    public static void updateCustomerFullName() {
+        Scanner scanner = new Scanner(System.in);
+        List<Customer> allCustomers = CustomerRepository.findAll();
+        System.out.println("Choose customer: ");
+        for (Customer customer : allCustomers) {
+            System.out.println(customer.getCustomerId() + ". " + customer.getFullName());
+        }
+        int chosenId = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Write new customer full name: ");
+
+        String newFullName = scanner.nextLine();
+
+        CustomerRepository.updateFullName(CustomerRepository.findById(chosenId), newFullName);
     }
 
     public static void addCustomer() {
@@ -180,7 +239,8 @@ public class MenuService {
             orderAmount += orderProduct.getUnitPrice() * orderProduct.getQuantity();
         }
 
-        Customer chosenCustomer = allCustomers.get((chosenCustomerId - 1));
+        //Customer chosenCustomer = allCustomers.get((chosenCustomerId - 1)); // parinkdavo bloga custumeri
+        Customer chosenCustomer = CustomerRepository.findById(chosenCustomerId);
 
         Orders order = Orders.builder()
                 .customer(chosenCustomer)
@@ -189,15 +249,13 @@ public class MenuService {
                 .products(orderProducts)
                 .build();
 
-
         for (Integer newChosenProduct : chosenProductsList) {
             ProductRepository.findById(newChosenProduct).setOrders(List.of(order));
         }
 
         chosenCustomer.setOrders(List.of(order));
-
         session.beginTransaction();
-        session.save(chosenCustomer);
+        session.update(chosenCustomer);
         session.getTransaction().commit();
 
         session.close();

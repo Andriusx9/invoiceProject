@@ -20,14 +20,16 @@ public class CustomerRepository {
      */
     public static void persist(Customer customer) {
         Transaction transaction = session.beginTransaction();
+        //session.merge(customer);
         session.persist(customer);
+
         transaction.commit();
         System.out.println("Customer was saved: " + customer);
     }
 
     public static List<Customer> findAll() {
-       List<Customer> customers = session.createQuery("from Customer", Customer.class).list();
-       return customers;
+
+        return session.createQuery("from Customer", Customer.class).list();
     }
 
     public static Customer findById(Integer customerId) {
@@ -45,11 +47,11 @@ public class CustomerRepository {
         System.out.println("Customer was deleted: " + customer);
     }
 
-    public static void deleteById(Integer customerId) {
+    public static void deleteById(int customerId) {
         Transaction transaction = session.beginTransaction();
         session.delete(findById(customerId));
         transaction.commit();
-        System.out.println("Customer was deleted: " + findById(customerId));
+        System.out.println("Customer was deleted: " + findById(customerId)); // nebemato kai istrina
     }
 
     public static void updateFullName(Customer customer, String newFullName) {

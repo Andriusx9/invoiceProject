@@ -21,7 +21,7 @@ public class NumbersToWords {
 
     public static String numbersToWords(Double number){
 
-        System.out.println(String.format("%.2f", number));
+        //System.out.println(String.format("%.2f", number));
 
         String[] split = String.valueOf(number).split("\\.");
 
@@ -34,6 +34,76 @@ public class NumbersToWords {
             cents = cents.concat("0");
         }
         return numberToWordsBeforePoint.concat(" ").concat(cents);
+    }
+
+    public static String numbersToWordsWithEuros(double number) {
+        String[] split = String.valueOf(number).split("\\.");
+        String numberToWordsBeforePoint = numbersToWordsWithEuros(Integer.parseInt(split[0]));
+        String cents = String.valueOf(split[1]);
+
+        int euros= Integer.parseInt(split[0]);
+        String numberInWordsBeforePoint = numbersToWordsWithEuros(euros);
+
+        String finalCents;
+
+        if(String.valueOf(cents).length() > 1) {
+            finalCents = String.valueOf(cents).substring(0, 2);
+        } else {
+            finalCents = String.valueOf(cents).substring(0, 1);
+        }
+
+
+
+        String[] splitForChangeCents = numberInWordsBeforePoint.split("0");
+
+        return splitForChangeCents[0].concat(finalCents).concat(splitForChangeCents[1]);
+
+
+    }
+
+    public static String numbersToWordsWithEuros(int number){
+        String numberInWords = numbersToWords(number);
+        String eur = " ";
+        int numberLength = String.valueOf(number).length();
+
+        if(numberLength == 1) {
+            if(number == 1) {
+                eur = eur.concat("euras");
+            } else if( number > 1 & number < 10){
+                eur = eur.concat("eurai");
+            }
+        } else if(numberLength == 2){
+            int secondNumber = Character.getNumericValue(String.valueOf(number).charAt(1));
+            if(secondNumber == 0){
+                eur = eur.concat("eurų");
+            } else if(number > 10 & number < 20) {
+                eur = eur.concat("eurų");
+            } else if( secondNumber == 1) {
+                eur = eur.concat("euras");
+            } else if( secondNumber > 1 & secondNumber < 10) {
+                eur = eur.concat("eurai");
+            }
+        } else if(numberLength > 2) {
+            String lastTwoDigits = String.valueOf(number).substring(numberLength - 2);
+            String lastDigit = String.valueOf(number).substring(numberLength - 1);
+
+            if(Integer.parseInt(lastDigit) == 0) {
+                eur = eur.concat("eurų");
+            } else if(Integer.parseInt(lastTwoDigits) == 1 ) {
+                eur = eur.concat("euras");
+            } else if(Integer.parseInt(lastTwoDigits) > 1 & Integer.parseInt(lastTwoDigits) < 10){
+                eur = eur.concat("eurai");
+            } else if( Integer.parseInt(lastTwoDigits) > 10 & Integer.parseInt(lastTwoDigits) < 20) {
+                eur = eur.concat("eurų");
+            } else if(Integer.parseInt(lastDigit) == 1) {
+                eur = eur.concat("euras");
+            } else if(Integer.parseInt(lastDigit) > 1 & Integer.parseInt(lastDigit) < 10 ) {
+                eur = eur.concat("eurai");
+            }
+        }
+
+        return numberInWords.concat(eur + " 0 ct");
+
     }
 
 

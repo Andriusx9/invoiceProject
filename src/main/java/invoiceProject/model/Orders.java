@@ -26,7 +26,7 @@ public class Orders {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.PERSIST }) // pakeista is ALL
     @JoinTable(
             name = "orders_products",
             joinColumns = { @JoinColumn(name = "orderId") },

@@ -19,8 +19,7 @@ public class OrderRepository {
     }
 
     public static List<Orders> findAll() {
-        List<Orders> orders = session.createQuery("from Orders", Orders.class).list();
-        return orders;
+        return session.createQuery("from Orders", Orders.class).list();
     }
 
     public static Orders findById(Integer orderId) {
@@ -34,7 +33,7 @@ public class OrderRepository {
         System.out.println("Order was deleted: " + orders);
     }
 
-    public void deleteById(Integer orderId) {
+    public static void deleteById(Integer orderId) {
         Transaction transaction = session.beginTransaction();
         session.delete(findById(orderId));
         transaction.commit();
