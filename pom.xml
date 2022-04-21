@@ -20,7 +20,6 @@
             <artifactId>itextpdf</artifactId>
             <version>5.5.9</version>
         </dependency>
-        <!-- Thanks for using https://jar-download.com -->
 
         <dependency>
             <groupId>mysql</groupId>

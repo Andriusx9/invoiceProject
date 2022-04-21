@@ -49,6 +49,7 @@ public class MenuService {
         System.out.println("6. Update customer full name");
         System.out.println("7. Delete customer");
         System.out.println("8. Delete order");
+        System.out.println("9. Delete product");
         System.out.println("0. Exit/Stop program");
     }
 
@@ -72,12 +73,62 @@ public class MenuService {
                 exception.printStackTrace();
             }
         } else if(userSelectedOption == 6) {
-            updateCustomerFullName();
+
+            List<Customer> customers = CustomerRepository.findAll();
+            if(customers.size() != 0) {
+                updateCustomerFullName();
+            } else {
+                System.out.println("Customer list is empty! Here nothing to update.");
+                showMenuSelections();
+            }
         } else if(userSelectedOption == 7) {
-            deleteCustomer();
+
+            List<Customer> customers = CustomerRepository.findAll();
+            if(customers.size() != 0) {
+                deleteCustomer();
+            } else {
+                System.out.println("Customer list is empty! Here nothing to delete.");
+                showMenuSelections();
+            }
+
         } else if(userSelectedOption == 8) {
-            deleteOrder();
+
+            List<Orders> orders = OrderRepository.findAll();
+            if(orders.size() != 0) {
+                deleteOrder();
+            } else {
+                System.out.println("Order list is empty! Here nothing to delete.");
+                showMenuSelections();
+            }
+
+        } else if(userSelectedOption == 9 ) {
+
+            List<Product> products = ProductRepository.findAll();
+            if(products.size() != 0) {
+                deleteProduct();
+            } else {
+                System.out.println("Product list is empty! Here nothing to delete.");
+                showMenuSelections();
+            }
+
         }
+    }
+
+    public static void deleteProduct() {
+        Scanner scanner = new Scanner(System.in);
+        List<Product> allProducts = ProductRepository.findAll();
+        System.out.println("Choose product: ");
+
+        for (Product product : allProducts) {
+            System.out.println(product.getProductId() + ". " + product.getName());
+        }
+
+        int chosenId = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Choose product to delete: ");
+
+        ProductRepository.deleteById(chosenId);
     }
 
     public static void deleteOrder() {

@@ -24,4 +24,12 @@ public class Customer {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer") //cascade = CascadeType.ALL,
     private List<Orders> orders;
+
+    public void setPersonalCode(Long personalCode) {
+        if(String.valueOf(personalCode).length() == 11) {
+            this.personalCode = personalCode;
+        } else {
+            System.out.println("Personal Code must be from 11 digits!");
+        }
+    }
 }
