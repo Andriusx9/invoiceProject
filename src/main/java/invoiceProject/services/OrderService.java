@@ -116,7 +116,7 @@ public class OrderService {
         OrderRepository.deleteById(chosenId);
     }
 
-    public Orders findOrder(int orderId) {
+    public static Orders findOrder(int orderId) {
 
         return OrderRepository.findById(orderId);
     }

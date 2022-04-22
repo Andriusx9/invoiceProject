@@ -26,4 +26,16 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     private List<Orders> orders;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", weight=" + weight +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

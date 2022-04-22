@@ -32,4 +32,17 @@ public class Customer {
             System.out.println("Personal Code must be from 11 digits!");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", fullName='" + fullName + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", country='" + country + '\'' +
+                ", personalCode=" + personalCode +
+                '}';
+    }
 }
