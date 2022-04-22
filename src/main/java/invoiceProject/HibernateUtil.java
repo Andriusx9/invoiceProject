@@ -27,8 +27,8 @@ public class HibernateUtil {
                 properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 properties.put(Environment.SHOW_SQL, "true");
                 properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                properties.put(Environment.HBM2DDL_AUTO, "create");
-                //properties.put(Environment.HBM2DDL_AUTO, "validate");
+                //properties.put(Environment.HBM2DDL_AUTO, "create");
+                properties.put(Environment.HBM2DDL_AUTO, "validate");
 
                 configuration.setProperties(properties);
 
